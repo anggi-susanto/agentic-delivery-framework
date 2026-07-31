@@ -4,32 +4,32 @@
     {
       "id": "f01-fast-doc",
       "lane": "fast",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     },
     {
       "id": "f02-standard-validation",
       "lane": "standard",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     },
     {
       "id": "f03-high-risk-migration",
       "lane": "high-risk",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     },
     {
       "id": "f04-high-risk-lifecycle",
       "lane": "high-risk",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     },
     {
       "id": "f05-escalation-url",
       "lane": "escalation",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     },
     {
       "id": "f06-escalation-subprocess",
       "lane": "escalation",
-      "revision": "bdc6889df7863a8f520e903e754a12ea9ca77344"
+      "revision": "21deac04543ca4f1bc541bf8b68f1521b7874612"
     }
   ],
   "fixture_revision_policy": "Fixture source is pinned to the committed framework revision listed per fixture. Use prepare_run to make a disposable agent-visible public workspace; hidden checks never enter it."

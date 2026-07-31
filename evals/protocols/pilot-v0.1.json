@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "design": "paired-crossover",
-  "fixture_manifest_sha256": "4481d297bf9eeff44a19ffa9ffcc71d6d9cacb4d9577944c968418280d7bd63a",
+  "fixture_manifest_sha256": "77dccb1c9bb1d41f94d2468448eeeaec5448b53b07e109bd64b465b567886258",
   "arms": [
     "baseline",
     "adf"
