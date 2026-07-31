@@ -14,6 +14,8 @@ lint:
 	$(PYTHON) -m json.tool schemas/scope-handshake.schema.json > /dev/null
 	$(PYTHON) -m json.tool schemas/review-record.schema.json > /dev/null
 	$(PYTHON) -m json.tool schemas/finding-event.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/eval-run.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/eval-summary.schema.json > /dev/null
 	PYTHONPATH=src $(PYTHON) -c 'import adf; print(adf.__version__)'
 	PYTHONPATH=src $(PYTHON) -m unittest tests.test_ledger -v
 
