@@ -1,0 +1,42 @@
+name: ADF CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run framework verification
+        run: make verify
+      - name: Check append-only ledger history
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check_append_only.py "${{ github.event.pull_request.base.sha }}" ledger
+
+  ci-contract:
+    name: Validate workflow contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest tests.test_ci_workflow -v
