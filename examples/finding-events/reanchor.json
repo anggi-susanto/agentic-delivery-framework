@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "event_id": "FND-EVT-2026-0002",
+  "finding_id": "FND-001",
+  "event": "reanchored",
+  "recorded_at": "2026-01-01T00:20:00Z",
+  "actor": "operator:example",
+  "resolution": {
+    "rationale": "The migration concern now belongs to the isolated rollback task.",
+    "successor_task_id": "verify-invoice-rollback"
+  }
+}

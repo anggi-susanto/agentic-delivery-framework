@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/anggi-susanto/agentic-delivery-framework/schemas/review-record.schema.json",
+  "title": "Append-only Agentic Delivery Review Record",
+  "type": "object",
+  "required": ["version", "record_id", "task_id", "review_kind", "lane", "subject", "dependencies", "reviewer", "raw_output_sha256", "outcome", "findings", "lineage", "recorded_at"],
+  "properties": {
+    "version": {"const": 1},
+    "record_id": {"type": "string", "pattern": "^REV-[A-Z0-9-]+$"},
+    "task_id": {"type": "string", "minLength": 1},
+    "review_kind": {"type": "string", "minLength": 1},
+    "lane": {"enum": ["fast", "standard", "high-risk", "escalation"]},
+    "subject": {"$ref": "#/$defs/digest_subject"},
+    "dependencies": {"type": "array", "items": {"$ref": "#/$defs/digest_subject"}},
+    "reviewer": {"type": "object", "required": ["identity", "client", "level"], "properties": {"identity": {"type": "string", "minLength": 1}, "client": {"type": "string", "minLength": 1}, "provider": {"type": "string"}, "model": {"type": "string"}, "variant": {"type": "string"}, "level": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "raw_output_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "outcome": {"enum": ["completed_pass", "completed_with_findings", "timeout", "malformed_output", "missing_output"]},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "lineage": {"type": "object", "required": ["prior_record_ids", "open_finding_ids", "resolved_finding_event_ids"], "properties": {"prior_record_ids": {"type": "array", "items": {"type": "string", "pattern": "^REV-[A-Z0-9-]+$"}}, "open_finding_ids": {"type": "array", "items": {"type": "string", "pattern": "^FND-[0-9]+$"}}, "resolved_finding_event_ids": {"type": "array", "items": {"type": "string", "pattern": "^FND-EVT-[A-Z0-9-]+$"}}}, "additionalProperties": false},
+    "recorded_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "digest_subject": {"type": "object", "required": ["reference", "sha256"], "properties": {"reference": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false},
+    "finding": {"type": "object", "required": ["id", "severity", "title", "detail"], "properties": {"id": {"type": "string", "pattern": "^FND-[0-9]+$"}, "severity": {"enum": ["blocking", "advisory"]}, "title": {"type": "string", "minLength": 1}, "detail": {"type": "string", "minLength": 1}, "contract_reference": {"type": "string"}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
+}

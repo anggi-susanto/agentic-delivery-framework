@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "record_id": "REV-2026-0002",
+  "task_id": "add-invoice-status-index",
+  "review_kind": "design",
+  "lane": "high-risk",
+  "subject": {"reference": "examples/contracts/high-risk.json", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},
+  "dependencies": [],
+  "reviewer": {"identity": "reviewer:example", "client": "adf-example", "level": "independent"},
+  "raw_output_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "outcome": "timeout",
+  "findings": [],
+  "lineage": {"prior_record_ids": [], "open_finding_ids": [], "resolved_finding_event_ids": []},
+  "recorded_at": "2026-01-01T00:00:01Z"
+}

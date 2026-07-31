@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "event_id": "FND-EVT-2026-0001",
+  "finding_id": "FND-001",
+  "event": "resolved",
+  "recorded_at": "2026-01-01T00:10:00Z",
+  "actor": "operator:example",
+  "resolution": {
+    "rationale": "Rollback proof was added and independently verified.",
+    "verification_record_id": "REV-2026-0004",
+    "fix_artifact_ref": "artifacts/rollback-proof.sha256"
+  }
+}

@@ -12,6 +12,8 @@ lint:
 	$(PYTHON) -m json.tool schemas/task-contract.schema.json > /dev/null
 	$(PYTHON) -m json.tool schemas/evidence-plan.schema.json > /dev/null
 	$(PYTHON) -m json.tool schemas/scope-handshake.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/review-record.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/finding-event.schema.json > /dev/null
 	PYTHONPATH=src $(PYTHON) -c 'import adf; print(adf.__version__)'
 
 validate-examples:

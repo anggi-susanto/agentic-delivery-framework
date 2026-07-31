@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/anggi-susanto/agentic-delivery-framework/schemas/finding-event.schema.json",
+  "title": "Append-only Agentic Delivery Finding Event",
+  "type": "object",
+  "required": ["version", "event_id", "finding_id", "event", "recorded_at", "actor", "resolution"],
+  "properties": {
+    "version": {"const": 1},
+    "event_id": {"type": "string", "pattern": "^FND-EVT-[A-Z0-9-]+$"},
+    "finding_id": {"type": "string", "pattern": "^FND-[0-9]+$"},
+    "event": {"enum": ["opened", "resolved", "rejected", "merged", "reanchored", "superseded"]},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "actor": {"type": "string", "minLength": 1},
+    "resolution": {"type": "object", "minProperties": 1, "properties": {"rationale": {"type": "string"}, "verification_record_id": {"type": "string"}, "fix_artifact_ref": {"type": "string"}, "canonical_finding_id": {"type": "string", "pattern": "^FND-[0-9]+$"}, "successor_task_id": {"type": "string"}, "superseding_contract_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
+}

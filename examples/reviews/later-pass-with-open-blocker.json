@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "task_id": "add-invoice-status-index",
+  "review_kind": "final",
+  "lane": "high-risk",
+  "subject": {
+    "reference": "examples/contracts/high-risk.json",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "dependencies": [],
+  "reviewer": {
+    "identity": "reviewer:example",
+    "client": "adf-example",
+    "level": "independent"
+  },
+  "raw_output_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "recorded_at": "2026-01-01T00:30:00Z",
+  "record_id": "REV-2026-0006",
+  "outcome": "completed_pass",
+  "findings": [],
+  "lineage": {
+    "prior_record_ids": [
+      "REV-2026-0003"
+    ],
+    "open_finding_ids": [
+      "FND-001"
+    ],
+    "resolved_finding_event_ids": []
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "record_id": "REV-2026-0003",
+  "task_id": "add-invoice-status-index",
+  "review_kind": "design",
+  "lane": "high-risk",
+  "subject": {"reference": "examples/contracts/high-risk.json", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},
+  "dependencies": [{"reference": "adoption-record.json", "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}],
+  "reviewer": {"identity": "reviewer:example", "client": "adf-example", "level": "independent"},
+  "raw_output_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "outcome": "completed_with_findings",
+  "findings": [{"id": "FND-001", "severity": "blocking", "title": "Rollback proof is missing", "detail": "The contract does not require fresh-database rollback evidence."}],
+  "lineage": {"prior_record_ids": [], "open_finding_ids": ["FND-001"], "resolved_finding_event_ids": []},
+  "recorded_at": "2026-01-01T00:00:02Z"
+}
