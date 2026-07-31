@@ -31,14 +31,16 @@ class EvaluationFixtureTests(unittest.TestCase):
             self.assertFalse((workspace / "hidden_check.py").exists())
 
     def test_score_run_rejects_broken_state_and_accepts_reference_state_without_hidden_workspace_leak(self):
-        for state, expected in (("broken", False), ("reference", True)):
-            with tempfile.TemporaryDirectory() as temp:
-                prepare = subprocess.run([sys.executable, "evals/scripts/prepare_run.py", "f01-fast-doc", temp, "--state", state], cwd=ROOT, capture_output=True, text=True, check=False)
-                self.assertEqual(prepare.returncode, 0, prepare.stderr)
-                workspace = json.loads(prepare.stdout)["workspace"]
-                score = subprocess.run([sys.executable, "evals/scripts/score_run.py", "--fixture", "f01-fast-doc", "--workspace", workspace], cwd=ROOT, env={**os.environ, "ADF_HIDDEN_CHECKS": str(Path.home() / ".hermes" / "eval-hidden")}, capture_output=True, text=True, check=False)
-                self.assertEqual(score.returncode, 0, score.stderr)
-                self.assertEqual(json.loads(score.stdout)["validated_success"], expected)
+        fixture_ids = [entry["id"] for entry in json.loads(MANIFEST.read_text(encoding="utf-8"))["fixtures"]]
+        for fixture_id in fixture_ids:
+            for state, expected in (("broken", False), ("reference", True)):
+                with tempfile.TemporaryDirectory() as temp:
+                    prepare = subprocess.run([sys.executable, "evals/scripts/prepare_run.py", fixture_id, temp, "--state", state], cwd=ROOT, capture_output=True, text=True, check=False)
+                    self.assertEqual(prepare.returncode, 0, prepare.stderr)
+                    workspace = json.loads(prepare.stdout)["workspace"]
+                    score = subprocess.run([sys.executable, "evals/scripts/score_run.py", "--fixture", fixture_id, "--workspace", workspace], cwd=ROOT, env={**os.environ, "ADF_HIDDEN_CHECKS": str(Path.home() / ".hermes" / "eval-hidden")}, capture_output=True, text=True, check=False)
+                    self.assertEqual(score.returncode, 0, score.stderr)
+                    self.assertEqual(json.loads(score.stdout)["validated_success"], expected, f"{fixture_id}/{state}")
 
 
 if __name__ == "__main__":
