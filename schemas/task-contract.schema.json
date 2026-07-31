@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/anggi-susanto/agentic-delivery-framework/schemas/task-contract.schema.json",
+  "title": "Agentic Delivery Task Contract",
+  "description": "Version 1 portable task contract for proportional agentic delivery controls.",
+  "type": "object",
+  "required": ["version", "id", "lane", "outcome", "scope", "acceptance", "risk"],
+  "properties": {
+    "version": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "lane": {"enum": ["fast", "standard", "high-risk", "escalation"]},
+    "outcome": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "object",
+      "required": ["allowed_paths"],
+      "properties": {
+        "allowed_paths": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "excluded_paths": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "acceptance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "risk": {
+      "type": "object",
+      "required": ["boundaries"],
+      "properties": {
+        "boundaries": {
+          "type": "array",
+          "items": {"enum": ["schema", "durable-state", "transaction", "security-authority", "network", "subprocess", "secrets", "destructive", "deployment"]}
+        }
+      },
+      "additionalProperties": false
+    },
+    "adoption": {
+      "type": "object",
+      "required": ["mechanical_responsibilities"],
+      "properties": {
+        "mechanical_responsibilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["responsibility", "decision", "component", "version", "license_review", "adapter_boundary"],
+            "properties": {
+              "responsibility": {"type": "string", "minLength": 1},
+              "decision": {"enum": ["adopt", "adapt", "custom-domain"]},
+              "component": {"type": "string", "minLength": 1},
+              "version": {"type": "string", "minLength": 1},
+              "license_review": {"type": "string", "minLength": 1},
+              "adapter_boundary": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "oneOf": [
+        {"properties": {"lane": {"const": "fast"}}, "required": ["lane"]},
+        {"properties": {"lane": {"const": "standard"}}, "required": ["lane"]},
+        {"properties": {"lane": {"const": "high-risk"}}, "required": ["lane", "adoption"]},
+        {"properties": {"lane": {"const": "escalation"}}, "required": ["lane", "adoption"]}
+      ]
+    },
+    {
+      "if": {
+        "properties": {
+          "risk": {
+            "properties": {
+              "boundaries": {"contains": {}}
+            },
+            "required": ["boundaries"]
+          }
+        },
+        "required": ["risk"]
+      },
+      "then": {"required": ["adoption"]}
+    }
+  ]
+}

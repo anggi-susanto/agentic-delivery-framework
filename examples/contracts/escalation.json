@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "safe-export-subprocess",
+  "lane": "escalation",
+  "outcome": "Run a fixed export subprocess with bounded output and verified cancellation of its process group.",
+  "scope": {"allowed_paths": ["src/export_runner.py", "tests/test_export_runner.py"]},
+  "adoption": {
+    "mechanical_responsibilities": [
+      {
+        "responsibility": "archive creation",
+        "decision": "adapt",
+        "component": "tar",
+        "version": "system package pinned by image digest",
+        "license_review": "required",
+        "adapter_boundary": "fixed argv, private work directory, bounded output, and cancellation mapping"
+      }
+    ]
+  },
+  "acceptance": ["python3 -m unittest tests/test_export_runner.py -v"],
+  "risk": {"boundaries": ["subprocess", "secrets"]}
+}

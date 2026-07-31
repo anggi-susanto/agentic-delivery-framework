@@ -9,8 +9,13 @@ test:
 lint:
 	$(PYTHON) -m compileall -q scripts tests
 	$(PYTHON) -m json.tool schemas/review-verdict.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/task-contract.schema.json > /dev/null
 
 validate-examples:
+	@set -e; \
+	for contract in examples/contracts/*.json; do \
+		$(PYTHON) scripts/validate_contract.py "$$contract"; \
+	done
 	$(PYTHON) scripts/validate_contract.py examples/high-risk-migration/contract.json
 
 package-smoke:

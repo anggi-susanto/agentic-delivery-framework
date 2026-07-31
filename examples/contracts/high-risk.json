@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "add-invoice-status-index",
+  "lane": "high-risk",
+  "outcome": "Add an indexed invoice status field while preserving fresh-database rollback behavior.",
+  "scope": {"allowed_paths": ["migrations/**", "models/invoice.py", "tests/integration/test_invoice_migration.py"]},
+  "adoption": {
+    "mechanical_responsibilities": [
+      {
+        "responsibility": "database migration execution",
+        "decision": "adopt",
+        "component": "Alembic",
+        "version": "pinned by project lockfile",
+        "license_review": "required",
+        "adapter_boundary": "project migration wrapper and schema policy"
+      }
+    ]
+  },
+  "acceptance": ["pytest tests/integration/test_invoice_migration.py -q"],
+  "risk": {"boundaries": ["schema", "durable-state"]}
+}

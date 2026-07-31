@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "fixture",
+  "lane": "standard",
+  "outcome": "Do the bounded task.",
+  "scope": {
+    "allowed_paths": [
+      "README.md"
+    ]
+  },
+  "acceptance": [
+    "python3 -m unittest -v"
+  ],
+  "risk": {
+    "boundaries": [
+      "network"
+    ]
+  }
+}

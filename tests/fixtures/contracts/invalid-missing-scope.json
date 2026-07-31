@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "fixture",
+  "lane": "fast",
+  "outcome": "Do the bounded task.",
+  "scope": {},
+  "acceptance": [
+    "python3 -m unittest -v"
+  ],
+  "risk": {
+    "boundaries": []
+  }
+}

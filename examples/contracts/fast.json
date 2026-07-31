@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "fix-readme-link",
+  "lane": "fast",
+  "outcome": "Correct the canonical repository link in the README.",
+  "scope": {"allowed_paths": ["README.md"], "excluded_paths": ["src/**", "schemas/**"]},
+  "acceptance": ["python3 scripts/check_links.py"],
+  "risk": {"boundaries": []}
+}

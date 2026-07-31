@@ -20,6 +20,11 @@ def validate_contract(contract: dict[str, Any]) -> list[str]:
     missing = sorted(REQUIRED - contract.keys())
     errors.extend(f"missing required field: {name}" for name in missing)
 
+    if contract.get("version") != 1:
+        errors.append("version must be 1")
+    if not isinstance(contract.get("id"), str) or not contract.get("id", "").strip():
+        errors.append("id must be a non-empty string")
+
     lane = contract.get("lane")
     if lane not in LANES:
         errors.append(f"lane must be one of: {', '.join(sorted(LANES))}")
@@ -28,11 +33,12 @@ def validate_contract(contract: dict[str, Any]) -> list[str]:
         errors.append("outcome must be a non-empty string")
 
     scope = contract.get("scope")
-    if not isinstance(scope, dict) or not scope.get("allowed_paths"):
+    allowed_paths = scope.get("allowed_paths") if isinstance(scope, dict) else None
+    if not isinstance(allowed_paths, list) or not allowed_paths or not all(isinstance(path, str) and path.strip() for path in allowed_paths):
         errors.append("scope.allowed_paths is required")
 
     acceptance = contract.get("acceptance")
-    if not isinstance(acceptance, list) or not acceptance or not all(isinstance(item, str) for item in acceptance):
+    if not isinstance(acceptance, list) or not acceptance or not all(isinstance(item, str) and item.strip() for item in acceptance):
         errors.append("acceptance must be a non-empty list of command strings")
 
     risk = contract.get("risk")
@@ -51,8 +57,10 @@ def validate_contract(contract: dict[str, Any]) -> list[str]:
                     errors.append(f"adoption.mechanical_responsibilities[{index}] must be an object")
                     continue
                 for field in ("responsibility", "decision", "component", "version", "license_review", "adapter_boundary"):
-                    if not item.get(field):
+                    if not isinstance(item.get(field), str) or not item[field].strip():
                         errors.append(f"adoption.mechanical_responsibilities[{index}].{field} is required")
+                if item.get("decision") not in {"adopt", "adapt", "custom-domain"}:
+                    errors.append(f"adoption.mechanical_responsibilities[{index}].decision must be adopt, adapt, or custom-domain")
 
     return errors
 

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "improve-contract-error-copy",
+  "lane": "standard",
+  "outcome": "Make an existing contract-validation error actionable without changing validation policy.",
+  "scope": {"allowed_paths": ["scripts/validate_contract.py", "tests/**"]},
+  "acceptance": ["python3 -m unittest discover -s tests -v"],
+  "risk": {"boundaries": []}
+}
