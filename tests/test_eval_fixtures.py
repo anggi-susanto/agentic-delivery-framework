@@ -30,6 +30,27 @@ class EvaluationFixtureTests(unittest.TestCase):
             self.assertTrue((workspace / "task.md").is_file())
             self.assertFalse((workspace / "hidden_check.py").exists())
 
+    def test_bootstrap_retrieves_and_verifies_pinned_private_evaluator(self):
+        with tempfile.TemporaryDirectory() as temp:
+            result = subprocess.run([sys.executable, "evals/scripts/bootstrap_evaluator.py", temp], cwd=ROOT, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(len(list(Path(payload["hidden_checks"]).glob("*.py"))), 6)
+
+    def test_bootstrap_rejects_agent_repository_destination(self):
+        destination = ROOT / "evals" / "agent-visible-evaluator"
+        result = subprocess.run([sys.executable, "evals/scripts/bootstrap_evaluator.py", str(destination)], cwd=ROOT, capture_output=True, text=True, check=False)
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(json.loads(result.stdout)["error"], "evaluator destination must be outside the agent repository")
+        self.assertFalse(destination.exists())
+
+    def test_score_run_returns_invalid_fixture_before_evaluator_lookup(self):
+        with tempfile.TemporaryDirectory() as temp:
+            result = subprocess.run([sys.executable, "evals/scripts/score_run.py", "--fixture", "unknown", "--workspace", temp], cwd=ROOT, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 2)
+            self.assertEqual(json.loads(result.stdout)["error"], "invalid fixture: unknown")
+
     def test_score_run_rejects_broken_state_and_accepts_reference_state_without_hidden_workspace_leak(self):
         fixture_ids = [entry["id"] for entry in json.loads(MANIFEST.read_text(encoding="utf-8"))["fixtures"]]
         for fixture_id in fixture_ids:

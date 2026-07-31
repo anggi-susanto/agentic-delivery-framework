@@ -1,0 +1,18 @@
+{
+  "version": "0.1",
+  "repository": "git@github.com:anggi-susanto/adf-evaluator-private.git",
+  "revision": "c1162b6ee1ef9bf8d091c3cb33cf8d287e83c40a",
+  "manifest_path": "manifest.json",
+  "manifest_sha256": "28f31076b9657ff8ab0a8efc63a97c514f41b571369763a37d13e715b6963b00",
+  "hidden_checks_subdirectory": "hidden_checks",
+  "retrieval": {
+    "method": "private-git-checkout",
+    "authentication": "read-only GitHub credential supplied by the evaluator environment",
+    "agent_workspace_policy": "never mount or copy hidden checks into the agent-visible workspace"
+  },
+  "verification": {
+    "required_files": 6,
+    "verify_manifest_sha256_before_scoring": true,
+    "reject_revision_or_manifest_mismatch": true
+  }
+}
