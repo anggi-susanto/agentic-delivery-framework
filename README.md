@@ -50,11 +50,14 @@ See [lane selection](docs/workflow/lanes.md) and the [evidence matrix](docs/work
 1. Copy the relevant contract template from `templates/` into your repository.
 2. Choose a lane using [docs/workflow/lanes.md](docs/workflow/lanes.md).
 3. For high-risk/escalation work, complete the adoption record and scope handshake.
-4. Validate a JSON contract:
+4. Validate a JSON contract and run the complete local baseline:
 
 ```bash
 python3 scripts/validate_contract.py examples/high-risk-migration/contract.json
+make verify
 ```
+
+`make verify` runs unit tests, Python compilation, JSON-schema syntax checks, the example validator, and an internal Markdown-link check. The initial baseline supports Python 3.11+ and has no ADF runtime dependencies or package-install requirement; the installable `adf` CLI is introduced in [issue #4](https://github.com/anggi-susanto/agentic-delivery-framework/issues/4).
 
 5. Store review records using `schemas/review-verdict.schema.json`; keep historical records append-only.
 

@@ -1,8 +1,10 @@
 import importlib.util
+import tomllib
 import unittest
 from pathlib import Path
 
-SCRIPT = Path(__file__).parents[1] / "scripts" / "validate_contract.py"
+ROOT = Path(__file__).parents[1]
+SCRIPT = ROOT / "scripts" / "validate_contract.py"
 spec = importlib.util.spec_from_file_location("validate_contract", SCRIPT)
 module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
@@ -56,6 +58,13 @@ class ValidateContractTests(unittest.TestCase):
             "risk": {"boundaries": []},
         }
         self.assertEqual(module.validate_contract(contract), [])
+
+    def test_project_manifest_declares_dependency_free_python_baseline(self):
+        with (ROOT / "pyproject.toml").open("rb") as manifest_file:
+            manifest = tomllib.load(manifest_file)
+        self.assertEqual(manifest["project"]["requires-python"], ">=3.11")
+        self.assertEqual(manifest["project"].get("dependencies", []), [])
+        self.assertEqual(manifest["tool"]["adf"]["verification-command"], "make verify")
 
 
 if __name__ == "__main__":
