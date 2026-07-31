@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "task_id": "add-invoice-status-index",
+  "contract_sha256": "9a232415cf341c1d06a43605684d065b9056291f19b4505ae14184a35a5c61de",
+  "verifier": "independent verifier",
+  "proof_items": [
+    {
+      "claim": "Fresh database migration applies and rolls back without losing the existing invoice table.",
+      "command": "pytest tests/integration/test_invoice_migration.py -q",
+      "environment": "disposable PostgreSQL service",
+      "artifact_ref": "artifacts/migration-lifecycle-result.sha256"
+    }
+  ],
+  "notes": "Artifact references identify sanitized result records; they do not embed credentials or process output."
+}

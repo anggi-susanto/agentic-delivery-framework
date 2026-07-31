@@ -10,6 +10,8 @@ lint:
 	$(PYTHON) -m compileall -q scripts tests
 	$(PYTHON) -m json.tool schemas/review-verdict.schema.json > /dev/null
 	$(PYTHON) -m json.tool schemas/task-contract.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/evidence-plan.schema.json > /dev/null
+	$(PYTHON) -m json.tool schemas/scope-handshake.schema.json > /dev/null
 
 validate-examples:
 	@set -e; \

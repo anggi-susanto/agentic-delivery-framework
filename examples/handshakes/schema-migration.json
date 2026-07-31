@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "task_id": "add-invoice-status-index",
+  "contract_sha256": "9a232415cf341c1d06a43605684d065b9056291f19b4505ae14184a35a5c61de",
+  "lane": "high-risk",
+  "objective": "Add an indexed invoice status field while preserving fresh-database rollback behavior.",
+  "allowed_paths": ["migrations/**", "models/invoice.py", "tests/integration/test_invoice_migration.py"],
+  "frozen_invariants": ["The migration remains additive and rollback-safe.", "No external service or deployment configuration changes."],
+  "out_of_scope": ["Application deployment", "Invoice business-policy changes"],
+  "required_red_tests": ["tests/integration/test_invoice_migration.py::test_upgrade_and_rollback"],
+  "acceptance_commands": ["pytest tests/integration/test_invoice_migration.py -q"],
+  "final_reviewer_route": "independent high-risk staged-diff reviewer",
+  "no_files_changed": true,
+  "commit_allowed_now": false
+}
