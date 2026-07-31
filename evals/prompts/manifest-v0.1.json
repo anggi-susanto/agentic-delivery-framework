@@ -1,0 +1,179 @@
+{
+  "version": "0.1",
+  "mappings": [
+    {
+      "fixture_id": "f01-fast-doc",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f01-fast-doc.json",
+        "sha256": "ac58a326535f0db6f04f3ea994d217244e4f26240a00ba240cd4d94a4f7ccf65"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    },
+    {
+      "fixture_id": "f02-standard-validation",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f02-standard-validation.json",
+        "sha256": "b82a6c3924f40421b131fd625b77af8d2e314802773d0fe6a9c73fe32504d3a7"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    },
+    {
+      "fixture_id": "f03-high-risk-migration",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f03-high-risk-migration.json",
+        "sha256": "fb3217b93d6d3b01e2565dbf6627de7fb58cb3abbe0e4df53970e707ba1f267d"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    },
+    {
+      "fixture_id": "f04-high-risk-lifecycle",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f04-high-risk-lifecycle.json",
+        "sha256": "a3a305cfb210de7d9c519a41212c6af14e7fdd197a888a415e65f3af7d5c8d1d"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    },
+    {
+      "fixture_id": "f05-escalation-url",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f05-escalation-url.json",
+        "sha256": "d85727b7443450e9b224d1de4769c07e54886b24381caaa0f968fe60f9d4adb6"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    },
+    {
+      "fixture_id": "f06-escalation-subprocess",
+      "baseline_prompt": {
+        "path": "evals/prompts/baseline.md",
+        "sha256": "25ec14e4b68560770cef978d77006eadaca340a1d9a7c00d5cbcdfaba8b8c8e7"
+      },
+      "adf_prompt": {
+        "path": "evals/prompts/adf.md",
+        "sha256": "aa42b3cf468baf26a9022673ecdcb3b05feaf8894229898c0d03cc57b619a9e0"
+      },
+      "contract": {
+        "path": "evals/contracts/f06-escalation-subprocess.json",
+        "sha256": "bb75df0946028a76a443f387ebdc3113ff80ae0032e64011a93b8c80b5c1a571"
+      },
+      "scorer": {
+        "path": "evals/scripts/score_run.py",
+        "sha256": "0c854ba4666adfc93a606d796efb2aeec1fb093d2a76aeb0e1a083c4da10043e"
+      },
+      "matched_conditions": {
+        "model": "identical-per-pair",
+        "harness": "identical-per-pair",
+        "tools": "identical-per-pair",
+        "max_turns": "identical-per-pair",
+        "wall_clock": "identical-per-pair",
+        "token_budget": "identical-per-pair",
+        "cost_cap": "identical-per-pair",
+        "reviewer": "identical-per-pair"
+      }
+    }
+  ]
+}

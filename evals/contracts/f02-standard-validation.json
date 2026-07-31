@@ -1,0 +1,12 @@
+{
+  "version": "0.1",
+  "fixture_id": "f02-standard-validation",
+  "lane": "standard",
+  "scope": "Implement only the public fixture task in the disposable workspace.",
+  "evidence": [
+    "public check command",
+    "changed-path report"
+  ],
+  "review": "Request independent review before claiming completion.",
+  "circuit_breaker": "Stop and report if hidden material, credentials, or production data is requested."
+}
