@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "task-a": {
+      "latest_record_id": "REV-1",
+      "state": "reviewed"
+    }
+  }
+}

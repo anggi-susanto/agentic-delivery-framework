@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Any
 
 from .validation import validate_contract, validate_readiness
+from .ledger import validate_ledger
+from .projections import write_projections
 
 
 def _read(path: str) -> dict[str, Any]:
@@ -30,6 +32,29 @@ def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     as_json = "--json" in args
     args = [arg for arg in args if arg != "--json"]
+    base_ref = None
+    if "--base-ref" in args:
+        index = args.index("--base-ref")
+        if index + 1 >= len(args):
+            _emit("ledger", "", ["--base-ref requires a Git ref"], as_json)
+            return 2
+        base_ref = args[index + 1]
+        del args[index:index + 2]
+    if len(args) >= 2 and args[0] == "ledger" and args[1] in {"validate", "project"}:
+        if len(args) != 3:
+            _emit("ledger", "", ["ledger directory is required"], as_json)
+            return 2
+        root = Path(args[2])
+        errors = validate_ledger(root, base_ref)
+        if args[1] == "project" and not errors:
+            outputs = write_projections(root)
+            if as_json:
+                print(json.dumps({"errors": [], "kind": "ledger-project", "ok": True, "path": str(root), "outputs": sorted(outputs)}, sort_keys=True))
+            else:
+                print(f"Projected ledger: {root}")
+            return 0
+        _emit("ledger", str(root), errors, as_json)
+        return 1 if errors else 0
     if len(args) < 2 or args[0] != "validate" or args[1] not in {"contract", "evidence"}:
         _emit("usage", "", ["usage: adf validate {contract|evidence} ... [--json]"], as_json)
         return 2

@@ -1,0 +1,1 @@
+{"record_id":"REV-1","task_id":"task-a","findings":[{"id":"FND-1","severity":"blocking"}],"lineage":{"open_finding_ids":["FND-1"]}}
