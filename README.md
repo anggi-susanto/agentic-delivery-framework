@@ -50,14 +50,20 @@ See [lane selection](docs/workflow/lanes.md) and the [evidence matrix](docs/work
 1. Copy the relevant contract template from `templates/` into your repository.
 2. Choose a lane using [docs/workflow/lanes.md](docs/workflow/lanes.md).
 3. For high-risk/escalation work, complete the adoption record and scope handshake.
-4. Validate a JSON contract and run the complete local baseline:
+4. Install the dependency-free CLI and validate a contract:
 
 ```bash
-python3 scripts/validate_contract.py examples/high-risk-migration/contract.json
+python3 -m pip install .
+adf validate contract examples/contracts/fast.json --json
+adf validate evidence examples/contracts/high-risk.json \
+  examples/evidence/schema-migration.json \
+  examples/handshakes/schema-migration.json --json
 make verify
 ```
 
-`make verify` runs unit tests, Python compilation, JSON-schema syntax checks, the example validator, and an internal Markdown-link check. The initial baseline supports Python 3.11+ and has no ADF runtime dependencies or package-install requirement; the installable `adf` CLI is introduced in [issue #4](https://github.com/anggi-susanto/agentic-delivery-framework/issues/4).
+The CLI emits JSON for harnesses and CI when `--json` is supplied. Exit codes are deterministic: `0` valid, `1` validation failure, `2` usage or read failure. The legacy `python3 scripts/validate_contract.py CONTRACT.json` command remains as a documented compatibility wrapper through the `0.1` minor line.
+
+`make verify` runs unit tests, Python compilation, JSON-schema syntax checks, example validation, wheel smoke build, and an internal Markdown-link check. The baseline supports Python 3.11+ and has no ADF runtime dependencies.
 
 5. Store review records using `schemas/review-verdict.schema.json`; keep historical records append-only.
 

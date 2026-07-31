@@ -65,6 +65,7 @@ class ValidateContractTests(unittest.TestCase):
         self.assertEqual(manifest["project"]["requires-python"], ">=3.11")
         self.assertEqual(manifest["project"].get("dependencies", []), [])
         self.assertEqual(manifest["tool"]["adf"]["verification-command"], "make verify")
+        self.assertEqual(manifest["build-system"]["build-backend"], "setuptools.build_meta")
 
 
 if __name__ == "__main__":

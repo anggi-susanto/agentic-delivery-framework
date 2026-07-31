@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "agentic-delivery-framework"
 version = "0.1.0"
@@ -8,8 +12,14 @@ license = { text = "Apache-2.0" }
 authors = [{ name = "Anggi Susanto" }]
 dependencies = []
 
+[project.scripts]
+adf = "adf.cli:main"
+
 [tool.setuptools]
-py-modules = []
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [project.urls]
 Homepage = "https://github.com/anggi-susanto/agentic-delivery-framework"
