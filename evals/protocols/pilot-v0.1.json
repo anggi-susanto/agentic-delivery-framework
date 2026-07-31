@@ -1,7 +1,7 @@
 {
   "version": "0.1",
   "design": "paired-crossover",
-  "fixture_manifest_sha256": "cbc8b4b97080992924ba591e25aa485dbe525edd2a8a24af3029a38f45f98de7",
+  "fixture_manifest_sha256": "8e2d3c1c10ceb6e40630d1d0dfd45d8c59adba53fc6e7ad1843f76068bb2a4ff",
   "arms": ["baseline", "adf"],
   "harness": {"name": "to-be-recorded", "version": "to-be-recorded", "permissions": "identical-per-pair"},
   "model": {"identifier": "to-be-recorded", "revision": "to-be-recorded"},
