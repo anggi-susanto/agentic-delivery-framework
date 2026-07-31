@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "design": "paired-crossover",
+  "fixture_manifest_sha256": "cbc8b4b97080992924ba591e25aa485dbe525edd2a8a24af3029a38f45f98de7",
+  "arms": ["baseline", "adf"],
+  "harness": {"name": "to-be-recorded", "version": "to-be-recorded", "permissions": "identical-per-pair"},
+  "model": {"identifier": "to-be-recorded", "revision": "to-be-recorded"},
+  "sampling": {"temperature": 0, "seed_policy": "record-if-supported"},
+  "budgets": {"max_turns": "predeclared-per-fixture", "wall_clock_seconds": "predeclared-per-fixture", "token_budget": "identical-per-pair", "cost_cap": "identical-per-pair"},
+  "scoring": {"command": "evals/scripts/score_run.py", "success_requirements": ["hidden_acceptance", "project_checks", "scope_policy", "required_evidence"]},
+  "repetitions": 3,
+  "randomization": {"unit": "task-repetition", "method": "precommitted-balanced-order", "order_effect": "randomize-baseline-adf-order"},
+  "exclusions": {"count_as_failure": ["timeout", "model_refusal", "harness_crash", "flaky_test_after_recheck"], "exclude_only_if": ["documented_infrastructure_outage_affecting_both_arms", "predeclared_fixture_invalidity"], "report_all": true},
+  "report_version": "0.1",
+  "claim_policy": "Bound claims only: state exact fixture, harness, model revision, budgets, eligible runs, uncertainty, failures, and exclusions."
+}

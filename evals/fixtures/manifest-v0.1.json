@@ -1,0 +1,12 @@
+{
+  "version": "0.1",
+  "fixtures": [
+    {"id": "f01-fast-doc", "lane": "fast", "revision": "to-be-created-in-issue-9"},
+    {"id": "f02-standard-validation", "lane": "standard", "revision": "to-be-created-in-issue-9"},
+    {"id": "f03-high-risk-migration", "lane": "high-risk", "revision": "to-be-created-in-issue-9"},
+    {"id": "f04-high-risk-lifecycle", "lane": "high-risk", "revision": "to-be-created-in-issue-9"},
+    {"id": "f05-escalation-url", "lane": "escalation", "revision": "to-be-created-in-issue-9"},
+    {"id": "f06-escalation-subprocess", "lane": "escalation", "revision": "to-be-created-in-issue-9"}
+  ],
+  "fixture_revision_policy": "Before collection, replace every revision with immutable Git commit SHA-1s and update the protocol digest in the same committed amendment. Runs are prohibited while any fixture revision is a placeholder."
+}
