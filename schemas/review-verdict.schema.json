@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/anggi-susanto/agentic-delivery-framework/schemas/review-verdict.schema.json",
+  "title": "Agentic Delivery Review Verdict",
+  "type": "object",
+  "required": ["subject", "outcome", "reviewer", "findings"],
+  "properties": {
+    "subject": {"type": "string", "minLength": 1},
+    "outcome": {"enum": ["passed", "failed", "timeout", "malformed", "missing_output", "identity_mismatch"]},
+    "reviewer": {
+      "type": "object",
+      "required": ["client", "model", "level"],
+      "properties": {
+        "client": {"type": "string"},
+        "provider": {"type": "string"},
+        "model": {"type": "string"},
+        "variant": {"type": "string"},
+        "level": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "title", "detail"],
+        "properties": {
+          "id": {"type": "string"},
+          "severity": {"enum": ["blocking", "advisory"]},
+          "title": {"type": "string"},
+          "detail": {"type": "string"},
+          "contract_reference": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
